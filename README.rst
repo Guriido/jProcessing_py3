@@ -12,6 +12,7 @@
 Japanese NLP Library
 ====================
 
+This is a fork of the jProcessing repository, which purpose is Python 3.X support.
 
 .. sectnum::
 .. contents::
@@ -25,13 +26,13 @@ Requirements
 
 - Python Dependencies
 
-  - ``Python 2.6.*`` or above
+  - ``Python 3.*``
 
 
 ``Links``
 ---------
 
-- All code at jProcessing Repo GitHub_
+- All code at jProcessing Repo GitHub_ (original repository)
 
 .. _GitHub: https://github.com/kevincobain2000/jProcessing
 
@@ -43,10 +44,6 @@ Requirements
 
 .. _Sphinx: http://readthedocs.org/docs/jprocessing/en/latest/
 
-
-- PyPi_ Python Package
-
-.. _PyPi: http://pypi.python.org/pypi/jProcessing/0.1
 
 ::
 
