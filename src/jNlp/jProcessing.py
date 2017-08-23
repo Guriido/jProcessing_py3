@@ -6,6 +6,7 @@ import sys, os, subprocess, re
 from subprocess import call
 import xml.etree.cElementTree as etree
 
+
 def long_substr(str1, str2):
     data = [str1, str2]
     substr = ''
@@ -16,7 +17,9 @@ def long_substr(str1, str2):
                     substr = data[0][i:i+j]
     return substr.strip()
 
+
 class Similarities(object):
+
     def minhash(self, *args):
         """
         :*args: tokenized string like a nd b
@@ -34,16 +37,20 @@ class Similarities(object):
             return score
         except ZeroDivisionError: return score
 
+
 class Property(object):
+
     def __init__(self):
         pass
+
     def kanaChars(self):
         Chars = []
         tables = ['hiraganaChart.txt', 'katakanaChart.txt']
         for table in tables:
             buff = resource_stream('jNlp', 'data/%s'%table).readlines()
             for line in buff:
-                line = unicode(line, 'utf-8')
+                # line = unicode(line, 'utf-8')
+                line = line.decode()
                 Chars += line.split()
         return Chars
             
@@ -53,11 +60,13 @@ class Property(object):
         self.content = {}
         for line in self.file:
             if not line.strip(): continue
-            line = unicode(line,'utf-8')
+            # line = unicode(line,'utf-8')
+            line = line.decode()
             pos = line.split()[2].strip()
             self.content[pos] = int(line.split()[0].strip())
         if self.content.has_key(self.pos) and self.content[self.pos]: return True
         return False
+
     def tok_xml(self, sent, word):
         #Usage
         #tok_xml(u'これでアナタも冷え知らず', u'冷').get('pos')
@@ -67,16 +76,17 @@ class Property(object):
             for tok in chunk.getchildren():
                 if tok.get('target'):return tok
         return etree.fromstring(u'<tok></tok>')
+
     def iskana(self, word):
-        romaji = ['a', 'b', 'c', 'd', 'e', 'f', 'g', \
-                  'h', 'i', 'j', 'k', 'l', 'm', 'n', \
-                  'o', 'p', 'q', 'r', 's', 't', 'u', \
+        romaji = ['a', 'b', 'c', 'd', 'e', 'f', 'g',
+                  'h', 'i', 'j', 'k', 'l', 'm', 'n',
+                  'o', 'p', 'q', 'r', 's', 't', 'u',
                   'v', 'w', 'x', 'y', 'z']
         if len(word) == 1 and word in self.kanaChars() and word not in romaji:
             return True
-        else: return False
-        
-        
+        else:
+            return False
+
 
 if __name__ == '__main__':
     a = 'Once upon a time in Italy'
@@ -90,7 +100,7 @@ if __name__ == '__main__':
     pos = Property()
     #print pos.iscontent(u'地域')
     #print pos.tok_xml(u'これでアナタも冷え知らず', u'冷').get('pos')
-    print pos.iskana(u'冷')
+    print(pos.iskana('冷'))
 
 
 

@@ -55,7 +55,7 @@ Outputs example sentences for a query in Japanese only for ambiguous words.
 
 import re, os, subprocess
 from jNlp.edict_search_monash.edict_search import Parser
-import cPickle as pickle
+import pickle
 
 
 def word_and_id(BSent):
@@ -70,6 +70,7 @@ def word_and_id(BSent):
             results.append((word, s_id))
     return results
 
+
 def parse_examples(edict_examples_file):
     """
     Edict examples format
@@ -83,7 +84,7 @@ def parse_examples(edict_examples_file):
       format: Kanji ==> id ==> [examples_sent_id, ..]
                 才  ==> 01 ==> [#ID=276471_4870, ...]
       call:
-        >>> ambiguous_words[kanji][01]
+        >>> ambiguous_words[kanji][0o1]
         ...[#ID=276471_4870, ...]
                 
       edict_examples: @type = dictionary
@@ -95,7 +96,8 @@ def parse_examples(edict_examples_file):
     ambiguous_words = {}
     edict_examples = {}
     for line in edict_examples_file.readlines():
-        line = unicode(line,'utf-8')
+        # line = unicode(line,'utf-8')
+        line = line.decode()
         if line.startswith('A:'):
             eg_sent = line.split('#ID=')[0]
             eg_sent_id = line.split('#ID=')[1]
@@ -109,6 +111,7 @@ def parse_examples(edict_examples_file):
             ambiguous_words[word][s_id].append(eg_sent_id)
     return ambiguous_words, edict_examples
 
+
 def edict_entry(edict_file_path, query):
     kp = Parser(edict_file_path)
     for entry in kp.search(query):
@@ -117,7 +120,8 @@ def edict_entry(edict_file_path, query):
             glosses = re.findall('\(\d\).*?;',entry)
             s_ids = [int(re.search('\d',gloss).group(0)) for gloss in glosses]
             return s_ids, glosses
-    return [],[]
+    return [], []
+
 
 def check_pickles(edict_examples_path):
     f = open(edict_examples_path)
@@ -131,48 +135,41 @@ def check_pickles(edict_examples_path):
             ambiguous_words = pickle.load(open('ambiguous_words.p'))
             edict_examples = pickle.load(open('edict_examples.p'))
         return ambiguous_words, edict_examples
-    
+
+
 def search_with_example(edict_path, edict_examples_path, query):
     ambiguous_words, edict_examples = check_pickles(edict_examples_path)
     s_ids, glosses = edict_entry(edict_path, query)
-    print query.encode('utf-8')
+    # print query.encode('utf-8')
+    print(query)
     for s_id, gloss in enumerate(glosses):
-        print 
-        print 'Sense', gloss
+        # print
+        # print 'Sense', gloss
+        print('Sense', gloss)
         if ambiguous_words.has_key(query) and ambiguous_words[query].has_key(s_ids[s_id]):
             for ex_num, ex_id in enumerate(ambiguous_words[query][s_ids[s_id]], 1):
                 ex_sentence = edict_examples[ex_id].replace(query[0], '*'+query[0]+'*')
-                print '\t', ex_sentence.replace('A:','EX:'+str(ex_num).zfill(2)).encode('utf-8')
+                # print '\t', ex_sentence.replace('A:','EX:'+str(ex_num).zfill(2)).encode('utf-8')
+                print('\t', ex_sentence.replace('A:', 'EX:' + str(ex_num).zfill(2)))
+
 
 def _mime(f_path):
-    command = ['file','--mime',f_path]
+    command = ['file', '--mime', f_path]
     process = subprocess.Popen(command, stdout=subprocess.PIPE)
     charset = process.communicate()[0].split('charset=')[1]
     return charset.strip()
 
+
 def _encoding_check(edict_path, edict_examples_path):
-    if _mime(edict_path) <> 'iso-8859-1' or _mime(edict_examples_path) <>'utf-8':
-        print _mime(edict_path)
-        print 'examples file must utf-8 encoded'
-        print 'edict dictionary must be iso-8859-1 encoded'
-        print 'man iconv'
+    if _mime(edict_path) != 'iso-8859-1' or _mime(edict_examples_path) != 'utf-8':
+        print(_mime(edict_path))
+        print('examples file must utf-8 encoded')
+        print('edict dictionary must be iso-8859-1 encoded')
+        print('man iconv')
     return True
     
 if __name__ == '__main__':
-    query = u'水'
+    query = '水'
     edict_path = '../_dicts/edict-2011-08-30'
     edict_examples_path = '../_dicts/edict_examples'
     search_with_example(edict_path, edict_examples_path, query)
-    
-    
-    
-
-
-    
-            
-            
-        
-
-
-    
-

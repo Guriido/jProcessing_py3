@@ -26,7 +26,7 @@ if __name__ == '__main__':
                     down_jp = info_dic['link']
         
             if avail_en and avail_jp:
-                print moviename
+                print(moviename)
                 output = "<movie name='%s' down_en='%s' down_jp='%s'></movie>"%(moviename, down_en, down_jp)
                 out.write(output)
                 out.write('\n')

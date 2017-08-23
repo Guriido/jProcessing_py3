@@ -37,9 +37,9 @@ be using JMdict instead.
   
 """
   
-import sys, os, re, gzip, gettext
-gettext.install('pyjben', unicode=True)
-  
+import sys, os, re, gzip, gettext, functools, six
+# gettext.install('pyjben', unicode=True)
+gettext.install('pyjben')
   
 # Below follows the information codes sorted more-or-less as they are
 # on http://www.csse.monash.edu.au/~jwb/edict_doc.html, however more
@@ -97,18 +97,24 @@ def info_field_valid(i_field):
     #
     # Thankfully, this function should be reusable in the edict2 parser...
   
-    if i_field in valid_pos_codes: return True
-    if i_field == "P": return True
-    if i_field in valid_misc_codes: return True
-    if i_field in valid_foa_codes: return True
-    if i_field[:-1] in valid_dialect_codes: return True
+    if i_field in valid_pos_codes:
+        return True
+    if i_field == "P":
+        return True
+    if i_field in valid_misc_codes:
+        return True
+    if i_field in valid_foa_codes:
+        return True
+    if i_field[:-1] in valid_dialect_codes:
+        return True
     # Check for (1), (2), etc.
     try:
         i = int(i_field)
         return True
     except:
         return False
-  
+
+
 class EdictEntry(object):
   
     def __init__(self, raw_entry, quick_parsing=True):
@@ -188,12 +194,12 @@ class EdictEntry(object):
   
                 # Check that all i_fields are valid
                 bools = map(info_field_valid, i_fields)
-                ok = reduce(lambda x, y: x and y, bools)
+                ok = functools.reduce(lambda x, y: x and y, bools)
   
                 if not ok:
                     #print "INVALID INFO FIELD FOUND, REVERTING"
                     #print "INFO WAS %s, GLOSS WAS %s" % (info, gloss)
-                    print info
+                    print(info)
                     gloss = info + gloss
                     #print "RESTORED GLOSS:", gloss
                     break
@@ -227,15 +233,20 @@ class EdictEntry(object):
   
     def to_string(self, **kwargs):
         if self.furigana:
-            ja = _(u"%s [%s]") % (self.japanese, self.furigana)
+            # ja = _(u"%s [%s]") % (self.japanese, self.furigana)
+            ja = ("%s [%s]") % (self.japanese, self.furigana)
         else:
             ja = self.japanese
-        native = _(u"; ").join(self.glosses)
-        return _(u"%s: %s") % (ja, native)
+        # native = _(u"; ").join(self.glosses)
+        # return _(u"%s: %s") % (ja, native)
+        native = ("; ").join(self.glosses)
+        return ("%s: %s") % (ja, native)
   
     def __unicode__(self):
         """Dummy string dumper"""
-        return unicode(self.__repr__())
+        # return unicode(self.__repr__())
+        return self.__repr__().decode()
+    
   
 class Parser(object):
     def __init__(self, filename, use_cache=True, encoding="EUC-JP"):
@@ -261,7 +272,7 @@ class Parser(object):
   
         if self.use_cache and self.cache:
             # Read from cache
-            for k, entry in self.cache.iteritems():
+            for k, entry in six.iteritems(self.cache):
                 proc_entry(entry)
         else:
             # Read from file
@@ -306,7 +317,7 @@ class Parser(object):
   
 if __name__ == "__main__":
     kp = Parser('../_dicts/edict-2011-08-30')
-    query = u'私'
+    query = '私'
     for i, entry in enumerate(kp.search(query)):
-        print entry.to_string().encode('utf-8')
-
+        # print entry.to_string().encode('utf-8')
+        print(entry.to_string())

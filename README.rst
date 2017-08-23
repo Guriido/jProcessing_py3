@@ -1,18 +1,10 @@
-.. raw:: html
-
-  <HEAD>
-    <LINK href="http://www.jaist.ac.jp/~s1010205/gh-buttons.css" rel="stylesheet" type="text/css">
-  </HEAD>
-
-.. raw:: html
-
-  <br><a href="http://www.jaist.ac.jp/~s1010205" class="button icon home">Back to Home</a>
-
 ====================
 Japanese NLP Library
 ====================
 
 This is a fork of the jProcessing repository, which purpose is Python 3.X support.
+
+All the functions of the 0.2 versions are not yet supported by this version, feel free to help in debugging/porting code
 
 .. sectnum::
 .. contents::
@@ -60,6 +52,11 @@ In ``Terminal`` ::
 History
 -------
 
+- current version (unofficial modification of 0.1)
+
+        + Python3 support of the 0.1 version
+
+
 - ``0.2``
 
         + Sentiment Analysis of Japanese Text
@@ -80,33 +77,33 @@ Libraries and Modules
 
 Tokenize ``jTokenize.py``
 -------------------------
-In ``Python`` ::
+In ``Python3`` ::
 
   >>> from jNlp.jTokenize import jTokenize
-  >>> input_sentence = u'私は彼を５日前、つまりこの前の金曜日に駅で見かけた'
+  >>> input_sentence = '私は彼を５日前、つまりこの前の金曜日に駅で見かけた'
   >>> list_of_tokens = jTokenize(input_sentence)
-  >>> print list_of_tokens
-  >>> print '--'.join(list_of_tokens).encode('utf-8')
+  >>> print(list_of_tokens)
+  >>> print('--'.join(list_of_tokens))
 
 Returns: 
 
 ::
 
-  ... [u'\u79c1', u'\u306f', u'\u5f7c', u'\u3092', u'\uff15'...]
+  ... ['私', 'は', '彼', 'を', '５', '日', '前', '、', 'つまり', 'この', '前', 'の', '金曜日', 'に', '駅', 'で', '見かけ', 'た']
   ... 私--は--彼--を--５--日--前--、--つまり--この--前--の--金曜日--に--駅--で--見かけ--た
 
 Katakana Pronunciation:
 
 ::
-
-  >>> print '--'.join(jReads(input_sentence)).encode('utf-8')
+  >>> from jNlp.jTokenize import jReads
+  >>> print('--'.join(jReads(input_sentence)))
   ... ワタシ--ハ--カレ--ヲ--ゴ--ニチ--マエ--、--ツマリ--コノ--マエ--ノ--キンヨウビ--ニ--エキ--デ--ミカケ--タ
 
 
 Cabocha ``jCabocha.py``
 -----------------------
 
-Run Cabocha_ with original ``EUCJP`` or ``IS0-8859-1`` configured encoding, with ``utf8`` python
+Run Cabocha_ with original ``EUCJP`` or ``IS0-8859-1`` configured encoding
 
 .. _Cabocha: http://code.google.com/p/cabocha/
 
@@ -115,27 +112,39 @@ Run Cabocha_ with original ``EUCJP`` or ``IS0-8859-1`` configured encoding, with
 .. code-block:: python
 
   >>> from jNlp.jCabocha import cabocha
-  >>> print cabocha(input_sentence).encode('utf-8')
+  >>> print(cabocha(input_sentence))
 
 Output:
 
 .. code-block:: xml
 
   <sentence>
-   <chunk id="0" link="8" rel="D" score="0.971639" head="0" func="1">
-    <tok id="0" read="ワタシ" base="私" pos="名詞-代名詞-一般" ctype="" cform="" ne="O">私</tok>
-    <tok id="1" read="ハ" base="は" pos="助詞-係助詞" ctype="" cform="" ne="O">は</tok>
-   </chunk>
-   <chunk id="1" link="2" rel="D" score="0.488672" head="2" func="3">
-    <tok id="2" read="カレ" base="彼" pos="名詞-代名詞-一般" ctype="" cform="" ne="O">彼</tok>
-    <tok id="3" read="ヲ" base="を" pos="助詞-格助詞-一般" ctype="" cform="" ne="O">を</tok>
-   </chunk>
-   <chunk id="2" link="8" rel="D" score="2.25834" head="6" func="6">
-    <tok id="4" read="ゴ" base="５" pos="名詞-数" ctype="" cform="" ne="B-DATE">５</tok>
-    <tok id="5" read="ニチ" base="日" pos="名詞-接尾-助数詞" ctype="" cform="" ne="I-DATE">日</tok>
-    <tok id="6" read="マエ" base="前" pos="名詞-副詞可能" ctype="" cform="" ne="I-DATE">前</tok>
-    <tok id="7" read="、" base="、" pos="記号-読点" ctype="" cform="" ne="O">、</tok>
-   </chunk>
+ <chunk id="0" link="7" rel="D" score="-1.901231" head="0" func="1">
+  <tok id="0" feature="名詞,代名詞,一般,*,*,*,私,ワタシ,ワタシ">私</tok>
+  <tok id="1" feature="助詞,係助詞,*,*,*,*,は,ハ,ワ">は</tok>
+ </chunk>
+ <chunk id="1" link="2" rel="D" score="0.231898" head="2" func="3">
+  <tok id="2" feature="名詞,代名詞,一般,*,*,*,彼,カレ,カレ">彼</tok>
+  <tok id="3" feature="助詞,格助詞,一般,*,*,*,を,ヲ,ヲ">を</tok>
+ </chunk>
+ <chunk id="2" link="7" rel="D" score="-1.901231" head="6" func="6">
+  <tok id="4" feature="名詞,数,*,*,*,*,５,ゴ,ゴ">５</tok>
+  <tok id="5" feature="名詞,接尾,助数詞,*,*,*,日,ニチ,ニチ">日</tok>
+  <tok id="6" feature="名詞,副詞可能,*,*,*,*,前,マエ,マエ">前</tok>
+  <tok id="7" feature="記号,読点,*,*,*,*,、,、,、">、</tok>
+ </chunk>
+ <chunk id="3" link="7" rel="D" score="-1.901231" head="8" func="8">
+  <tok id="8" feature="接続詞,*,*,*,*,*,つまり,ツマリ,ツマリ">つまり</tok>
+ </chunk>
+ <chunk id="4" link="5" rel="D" score="1.309036" head="10" func="11">
+  <tok id="9" feature="連体詞,*,*,*,*,*,この,コノ,コノ">この</tok>
+  <tok id="10" feature="名詞,副詞可能,*,*,*,*,前,マエ,マエ">前</tok>
+  <tok id="11" feature="助詞,連体化,*,*,*,*,の,ノ,ノ">の</tok>
+ </chunk>
+ <chunk id="5" link="7" rel="D" score="-1.901231" head="12" func="13">
+  <tok id="12" feature="名詞,副詞可能,*,*,*,*,金曜日,キンヨウビ,キンヨービ">金曜日</tok>
+  <tok id="13" feature="助詞,格助詞,一般,*,*,*,に,ニ,ニ">に</tok>
+ </chunk>
 
 
 
@@ -147,14 +156,14 @@ Uses ``data/katakanaChart.txt`` and parses the chart. See katakanaChart_.
 .. code-block:: python
 
   >>> from jNlp.jConvert import *
-  >>> input_sentence = u'気象庁が２１日午前４時４８分、発表した天気概況によると、'
-  >>> print ' '.join(tokenizedRomaji(input_sentence))
-  >>> print tokenizedRomaji(input_sentence)
+  >>> input_sentence = '気象庁が２１日午前４時４８分、発表した天気概況によると、'
+  >>> print(' '.join(tokenizedRomaji(input_sentence)))
+  >>> print(tokenizedRomaji(input_sentence))
 
 .. code-block:: python
 
   ...kisyoutyou ga ni ichi nichi gozen yon ji yon hachi hun  hapyou si ta tenki gaikyou ni yoru to
-  ...[u'kisyoutyou', u'ga', u'ni', u'ichi', u'nichi', u'gozen',...]
+  ...['kisyoutyou', 'ga', 'ni', 'ichi', 'nichi', 'gozen',...]
 
  
 **katakanaChart.txt**
@@ -177,7 +186,7 @@ On English Strings ::
 >>> from jNlp.jProcessing import long_substr
 >>> a = 'Once upon a time in Italy'
 >>> b = 'Thre was a time in America'
->>> print long_substr(a, b)
+>>> print(long_substr(a, b))
 
 Output ::
 
@@ -185,9 +194,9 @@ Output ::
 
 On Japanese Strings ::
 
->>> a = u'これでアナタも冷え知らず'
->>> b = u'これでア冷え知らずナタも'
->>> print long_substr(a, b).encode('utf-8')
+>>> a = 'これでアナタも冷え知らず'
+>>> b = 'これでア冷え知らずナタも'
+>>> print(long_substr(a, b))
 
 Output ::
 
@@ -203,15 +212,15 @@ Uses MinHash by checking the overlap http://en.wikipedia.org/wiki/MinHash
 >>> s = Similarities()
 >>> a = 'There was'
 >>> b = 'There is'
->>> print s.minhash(a,b)
+>>> print(s.minhash(a,b))
 ...0.444444444444
 
 :Japanese Strings:
 
 >>> from jNlp.jProcessing import *
->>> a = u'これは何ですか？'
->>> b = u'これはわからないです'
->>> print s.minhash(' '.join(jTokenize(a)), ' '.join(jTokenize(b)))
+>>> a = 'これは何ですか？'
+>>> b = 'これはわからないです'
+>>> print(s.minhash(' '.join(jTokenize(a)), ' '.join(jTokenize(b))))
 ...0.210526315789
 
 Edict Japanese Dictionary Search with Example sentences
@@ -289,14 +298,14 @@ Links
 For all entries of sense definitions
 
 >>> from jNlp.edict_search import *
->>> query = u'認める'
->>> edict_path = 'src/jNlp/data/edict-yy-mm-dd'
+>>> query = '認める'
+>>> edict_path = 'src/jNlp/data/edict'
 >>> kp = Parser(edict_path)
 >>> for i, entry in enumerate(kp.search(query)):
-...     print entry.to_string().encode('utf-8')
+...     print(entry.to_string())
 
 
-``edict_examples.py``
+``edict_examples.py`` -> Not supported yet !!
 ---------------------
 :`Note`: Only outputs the examples sentences for ambiguous words (if word has one or more senses)
 
@@ -325,7 +334,7 @@ Output ::
     EX:04 彼は女性の喫煙をいいものだと*認*めない。He doesn't approve of women smoking.
     ...
 
-Sentiment Analysis Japanese Text
+Sentiment Analysis Japanese Text -> Not supported yet !!
 ================================
 
 This section covers (1) Sentiment Analysis on Japanese text using Word Sense Disambiguation, Wordnet-jp_ (Japanese Word Net file name ``wnjpn-all.tab``), SentiWordnet_ (English SentiWordNet file name ``SentiWordNet_3.*.txt``).
@@ -375,7 +384,7 @@ Japanese Word Polarity Score
 Contacts
 ========
 
-  :Author: `pulkit[at]jaist.ac.jp` [change ``at`` with ``@``]
+  :Original Author: `pulkit[at]jaist.ac.jp` [change ``at`` with ``@``]
 
 
 .. include:: disqus_jnlp.html.rst
