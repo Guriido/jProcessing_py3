@@ -196,19 +196,25 @@ On English Strings
   >>> print(long_substr(a, b))
 
 
-Output ::
+Output
 
-...a time in
+.. code-block:: python
 
-On Japanese Strings ::
+  ...a time in
 
->>> a = 'これでアナタも冷え知らず'
->>> b = 'これでア冷え知らずナタも'
->>> print(long_substr(a, b))
+On Japanese Strings
 
-Output ::
+.. code-block:: python
 
-...冷え知らず
+  >>> a = 'これでアナタも冷え知らず'
+  >>> b = 'これでア冷え知らずナタも'
+  >>> print(long_substr(a, b))
+
+Output
+
+.. code-block:: python
+
+  ...冷え知らず
 
 Similarity between two sentences ``jProcessing.py``
 ---------------------------------------------------
