@@ -196,9 +196,7 @@ On English Strings
   >>> print(long_substr(a, b))
 
 
-Output
-
-.. code-block:: python
+Output ::
 
   ...a time in
 
@@ -210,9 +208,7 @@ On Japanese Strings
   >>> b = 'これでア冷え知らずナタも'
   >>> print(long_substr(a, b))
 
-Output
-
-.. code-block:: python
+Output ::
 
   ...冷え知らず
 
@@ -222,20 +218,24 @@ Uses MinHash by checking the overlap http://en.wikipedia.org/wiki/MinHash
 
 :English Strings:
 
->>> from jNlp.jProcessing import Similarities
->>> s = Similarities()
->>> a = 'There was'
->>> b = 'There is'
->>> print(s.minhash(a,b))
-...0.444444444444
+.. code-block:: python
+
+  >>> from jNlp.jProcessing import Similarities
+  >>> s = Similarities()
+  >>> a = 'There was'
+  >>> b = 'There is'
+  >>> print(s.minhash(a,b))
+  ...0.444444444444
 
 :Japanese Strings:
 
->>> from jNlp.jProcessing import *
->>> a = 'これは何ですか？'
->>> b = 'これはわからないです'
->>> print(s.minhash(' '.join(jTokenize(a)), ' '.join(jTokenize(b))))
-...0.210526315789
+.. code-block:: python
+
+  >>> from jNlp.jProcessing import *
+  >>> a = 'これは何ですか？'
+  >>> b = 'これはわからないです'
+  >>> print(s.minhash(' '.join(jTokenize(a)), ' '.join(jTokenize(b))))
+  ...0.210526315789
 
 Edict Japanese Dictionary Search with Example sentences
 =======================================================
