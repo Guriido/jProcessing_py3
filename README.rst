@@ -185,12 +185,15 @@ Uses ``data/katakanaChart.txt`` and parses the chart. See katakanaChart_.
 Longest Common String Japanese ``jProcessing.py``
 -------------------------------------------------
 
-On English Strings ::
+On English Strings
 
->>> from jNlp.jProcessing import long_substr
->>> a = 'Once upon a time in Italy'
->>> b = 'Thre was a time in America'
->>> print(long_substr(a, b))
+
+.. code-block:: python
+
+  >>> from jNlp.jProcessing import long_substr
+  >>> a = 'Once upon a time in Italy'
+  >>> b = 'Thre was a time in America'
+  >>> print(long_substr(a, b))
 
 
 Output ::
