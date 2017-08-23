@@ -311,12 +311,25 @@ Links
 
 For all entries of sense definitions
 
->>> from jNlp.edict_search import *
->>> query = '認める'
->>> edict_path = 'src/jNlp/data/edict'
->>> kp = Parser(edict_path)
->>> for i, entry in enumerate(kp.search(query)):
-...     print(entry.to_string())
+.. code-block:: python
+
+  >>> from jNlp.edict_search import *
+  >>> query = '認める'
+  >>> edict_path = 'src/jNlp/data/edict'
+  >>> kp = Parser(edict_path)
+  >>> for i, entry in enumerate(kp.search(query)):
+  ...     print(entry.to_string())
+
+::
+
+  ...認める [みとめる]: (v1,vt) (1) to recognize; to recognise; to observe; to notice; (2) to deem; to judge; to assess; (3) to approve; tocceptable; to allow; (4) to admit; to accept; to confess (to a charge); (5) to watch steadily; to observe carefully; (6) to renown; to give renown to; to appreciate; to acknowledge; (P)
+  ...非を認める [ひをみとめる]: (exp,v1) to admit a fault; to admit one is wrong
+  ...人影を認める [ひとかげをみとめる]: (exp,v1) to make out someone's figure
+  ...自他共に認める [じたともにみとめる]: (exp,v1) to be generally accepted; to be acknowledged by oneself and others
+  ...誤りを認める [あやまりをみとめる]: (exp,v1) to admit to a mistake
+  ...自他ともに認める [じたともにみとめる]: (exp,v1) to be generally accepted; to be acknowledged by oneself and others
+  ...必要と認める [ひつようとみとめる]: (exp,v1) to judge as necessary
+
 
 
 ``edict_examples.py`` -> Not supported yet !!
