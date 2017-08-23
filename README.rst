@@ -85,7 +85,7 @@ In ``Python3`` ::
   >>> print(list_of_tokens)
   >>> print('--'.join(list_of_tokens))
 
-Returns: 
+Returns:
 
 ::
 
@@ -94,11 +94,13 @@ Returns:
 
 Katakana Pronunciation:
 
-::
+.. code-block:: python
+
   >>> from jNlp.jTokenize import jReads
   >>> print('--'.join(jReads(input_sentence)))
 
 ::
+
   ... ワタシ--ハ--カレ--ヲ--ゴ--ニチ--マエ--、--ツマリ--コノ--マエ--ノ--キンヨウビ--ニ--エキ--デ--ミカケ--タ
 
 
@@ -189,6 +191,7 @@ On English Strings ::
 >>> a = 'Once upon a time in Italy'
 >>> b = 'Thre was a time in America'
 >>> print(long_substr(a, b))
+
 
 Output ::
 
