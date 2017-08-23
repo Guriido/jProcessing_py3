@@ -97,6 +97,8 @@ Katakana Pronunciation:
 ::
   >>> from jNlp.jTokenize import jReads
   >>> print('--'.join(jReads(input_sentence)))
+
+::
   ... ワタシ--ハ--カレ--ヲ--ゴ--ニチ--マエ--、--ツマリ--コノ--マエ--ノ--キンヨウビ--ニ--エキ--デ--ミカケ--タ
 
 
