@@ -1,2 +1,7 @@
 *.py linguist-language=Python
 docs/* linguist-documentation
+*.xml linguist-documentation
+*.txt linguist-documentation
+scr/jNlp/data/* linguist-documentation
+*.p linguist-documentation
+src/jProcessing.egg-info/* linguist-documentation
