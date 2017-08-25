@@ -9,6 +9,5 @@ import nltk
 from nltk.stem.wordnet import WordNetLemmatizer
 
 
-
 if __name__ == '__main__':
     pass

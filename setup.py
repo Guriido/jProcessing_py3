@@ -8,8 +8,8 @@ def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 setup(
     name='jProcessing',  # First Level Dir
-    version='0.1',
-    author='KATHURIA Pulkit',
+    version='0.1b',
+    author='KATHURIA Pulkit, (python3 support HAMELAIN Christian)',
     author_email='pulkit@jaist.ac.jp',
     packages=find_packages('src'),
     scripts=['scripts/vcabocha.py'],

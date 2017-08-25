@@ -1,5 +1,4 @@
-#! /usr/bin/env python
-# -*- coding: utf-8 -*-
+
 def color(raw_string, colour):
     """
     @returns a bold font
@@ -11,4 +10,4 @@ def color(raw_string, colour):
     return '\x1b[%sm%s\x1b[0m' % (';'.join(eval(colour)), raw_string)
 
 if __name__ == "__main__":
-    print color("this string","black")
+    print(color("this string","black"))

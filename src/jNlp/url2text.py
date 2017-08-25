@@ -30,7 +30,9 @@ class Parser(HTMLParser):
             self.__text.append('\n\n')  
  
     def text(self):  
-        return ''.join(self.__text).strip()  
+        return ''.join(self.__text).strip()
+
+
 class Url2Text(object):
     def raw_text(self, html_text):  
         try:
@@ -39,7 +41,7 @@ class Url2Text(object):
             parser.close()  
             return parser.text()  
         except:
-            print "Couldn't extract"
+            print("Couldn't extract")
             exit()
     
     def url2text(self, url):
@@ -59,7 +61,4 @@ if __name__ == '__main__':
     url = "http://content.usatoday.com/communities/onpolitics/post/2012/03/mitt-romney-super-tuesday-results-rick-santorum-ohio/1"
     #url = 'http://www.terminally-incoherent.com/blog/2007/09/19/latex-squeezing-the-vertical-white-space/'
     a = Url2Text()
-    print a.url2text(url)
-    
-    
-
+    print(a.url2text(url))

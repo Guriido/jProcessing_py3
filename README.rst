@@ -237,6 +237,29 @@ Uses MinHash by checking the overlap http://en.wikipedia.org/wiki/MinHash
   >>> print(s.minhash(' '.join(jTokenize(a)), ' '.join(jTokenize(b))))
   ...0.210526315789
 
+
+Word by word definition ``jTranslate.py``
+---------------------------------------------------
+Gives a raw definition of a sentence (alpha version)
+
+.. code-block:: python
+
+  >>> from jNlp.jTranslate import Translate
+  >>> edict_path = 'src/jNlp/data/edict'
+  >>> specialdict_path = 'src/jNlp/data/particles.json'
+  >>> translator = Translator(edict_path, specialdict_path)
+  >>> input_sentence = "田中さんが下町に行きました。"
+  >>> for el in translator.parse(args.string):
+  ...    print(el)
+
+  ...$PERSON
+  ...{1: ['Mr.', 'Mrs.', 'Miss', 'Ms.', '-san'], 2: ['makes words more polite']}
+  ...{1: ['low-lying part of a city'], 2: ['Shitamachi']}
+  ...{1: ['to', 'in', 'at', 'by']}
+  ...{1: ['go', 'move', 'head', 'be transported', 'reach'], 2: ['proceed', 'take place'], 3: ['pass through', 'come and go'], 4: ['walk'], 5: ['do'], 6: ['stream', 'flow'], 7: ['continue'], 8: ['have an orgasm', 'come', 'cum'], 9: ['trip', 'get high', 'have a drug-induced hallucination']}
+  ...{1: ['.']}
+
+
 Edict Japanese Dictionary Search with Example sentences
 =======================================================
 
