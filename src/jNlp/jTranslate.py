@@ -58,14 +58,12 @@ class Translator(object):
                             entry = get_most_precise_entry(search, query)
                             translations = get_meanings(entry.glosses)
                             translations['japanese'] = query
-                            # if query == '神保':
-                            #     print(entry.glosses)
-                            if len(translations) == 0:
-                                bypass_translation = True
+                            if features[0] == '名詞':
+                                translations['pos_tag'] = 'NN'
+                            elif features[0] == '動詞':
+                                translations['pos_tag'] = 'VB'
 
                         if bypass_translation:
-                            # if query == '神保':
-                            #     print(features[1], features[2])
                             if features[1] == '固有名詞' and features[2] == '人名':
                                 translations = {'japanese': query, 1: '$PERSON'}  # special flag: english POS TAG necessary for translation
                             elif features[1] == '固有名詞' and features[2] == '地域':

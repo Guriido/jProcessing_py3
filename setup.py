@@ -20,7 +20,7 @@ setup(
     url='http://www.jaist.ac.jp/~s1010205',
     license='LICENSE.txt',
     description='Japanese NLP Utilities',
-    long_description=open('README').read(),
+    long_description=open('README.txt').read(),
     classifiers=['Development Status :: 2 - Pre-Alpha','Natural Language :: Japanese',
                  'Topic :: Scientific/Engineering :: Artificial Intelligence'],
                  
