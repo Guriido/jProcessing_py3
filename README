@@ -2,6 +2,7 @@
 Japanese NLP Library
 ====================
 
+Python3 release of the jProcessing package - alpha version
 
 Requirements
 ============
@@ -12,13 +13,13 @@ Requirements
 
 - Python Dependencies
 
-  - ``Python 2.6.*`` or above
+  - ``Python 3.*`` or above
 
 
 ``Links``
 ---------
 
-- All code at jProcessing Repo GitHub_
+- All original code at jProcessing Repo GitHub_
 
 .. _GitHub: https://github.com/kevincobain2000/jProcessing
 
@@ -45,10 +46,14 @@ Requirements
 
 In ``Terminal`` ::
 
-  >>>bash$ python setup.py install
+  >>>bash$ python3 setup.py install
 
 History
 -------
+
+- ``0.1b``
+
+        + Support to python3 of 0.1 release
 
 - ``0.2``
 
@@ -76,7 +81,7 @@ Contacts
   .. _BugReport: http://www.jaist.ac.jp/~s1010205/styled/index.html
   .. _Contribute: https://github.com/kevincobain2000/jProcessing
 
-  :Author: `pulkit[at]jaist.ac.jp` [change ``at`` with ``@``]
+  :Original Author: `pulkit[at]jaist.ac.jp` [change ``at`` with ``@``]
 
 
 

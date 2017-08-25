@@ -47,7 +47,7 @@ Requirements
 
 In ``Terminal`` ::
 
-  bash$ python setup.py install
+  bash$ python3 setup.py install
 
 History
 -------

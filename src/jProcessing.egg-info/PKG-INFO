@@ -1,15 +1,16 @@
 Metadata-Version: 1.1
 Name: jProcessing
-Version: 0.1
+Version: 0.1b0
 Summary: Japanese NLP Utilities
 Home-page: http://www.jaist.ac.jp/~s1010205
-Author: KATHURIA Pulkit
+Author: KATHURIA Pulkit, (python3 support HAMELAIN Christian)
 Author-email: pulkit@jaist.ac.jp
 License: LICENSE.txt
 Description: ====================
         Japanese NLP Library
         ====================
         
+        Python3 release of the jProcessing package - alpha version
         
         Requirements
         ============
@@ -20,13 +21,13 @@ Description: ====================
         
         - Python Dependencies
         
-          - ``Python 2.6.*`` or above
+          - ``Python 3.*`` or above
         
         
         ``Links``
         ---------
         
-        - All code at jProcessing Repo GitHub_
+        - All original code at jProcessing Repo GitHub_
         
         .. _GitHub: https://github.com/kevincobain2000/jProcessing
         
@@ -58,6 +59,10 @@ Description: ====================
         History
         -------
         
+        - ``0.1b``
+        
+                + Support to python3 of 0.1 release
+        
         - ``0.2``
         
                 + Sentiment Analysis of Japanese Text
@@ -84,7 +89,7 @@ Description: ====================
           .. _BugReport: http://www.jaist.ac.jp/~s1010205/styled/index.html
           .. _Contribute: https://github.com/kevincobain2000/jProcessing
         
-          :Author: `pulkit[at]jaist.ac.jp` [change ``at`` with ``@``]
+          :Original Author: `pulkit[at]jaist.ac.jp` [change ``at`` with ``@``]
         
         
         

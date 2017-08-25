@@ -5,6 +5,7 @@ setup.py
 scripts/vcabocha.py
 src/__init__.py
 src/temp_test.py
+src/translate_test.py
 src/jNlp/__init__.py
 src/jNlp/callunix.py
 src/jNlp/eProcessing.py
@@ -16,6 +17,7 @@ src/jNlp/jSentiments.py
 src/jNlp/jTokenize.py
 src/jNlp/jTranslate.py
 src/jNlp/summarize.py
+src/jNlp/unicode_block.py
 src/jNlp/url2text.py
 src/jNlp/vcabocha.py
 src/jNlp/__pycache__/__init__.cpython-35.pyc
@@ -23,6 +25,8 @@ src/jNlp/__pycache__/jCabocha.cpython-35.pyc
 src/jNlp/__pycache__/jConvert.cpython-35.pyc
 src/jNlp/__pycache__/jProcessing.cpython-35.pyc
 src/jNlp/__pycache__/jTokenize.cpython-35.pyc
+src/jNlp/__pycache__/jTranslate.cpython-35.pyc
+src/jNlp/__pycache__/unicode_block.cpython-35.pyc
 src/jNlp/aquisition/OpenSubtitles.py
 src/jNlp/aquisition/SubtitleDatabase.py
 src/jNlp/aquisition/__init__.py
