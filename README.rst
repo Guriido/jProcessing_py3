@@ -252,12 +252,13 @@ Gives a raw definition of a sentence (alpha version)
   >>> for el in translator.parse(args.string):
   ...    print(el)
 
-  ...$PERSON
-  ...{1: ['Mr.', 'Mrs.', 'Miss', 'Ms.', '-san'], 2: ['makes words more polite']}
-  ...{1: ['low-lying part of a city'], 2: ['Shitamachi']}
-  ...{1: ['to', 'in', 'at', 'by']}
-  ...{1: ['go', 'move', 'head', 'be transported', 'reach'], 2: ['proceed', 'take place'], 3: ['pass through', 'come and go'], 4: ['walk'], 5: ['do'], 6: ['stream', 'flow'], 7: ['continue'], 8: ['have an orgasm', 'come', 'cum'], 9: ['trip', 'get high', 'have a drug-induced hallucination']}
-  ...{1: ['.']}
+  ...{1: '$PERSON', 'japanese': '田中'}
+  ...{1: ['Mr.', 'Mrs.', 'Miss', 'Ms.', '-san'], 2: ['makes words more polite'], 'japanese': 'さん'}
+  ...{1: ['low-lying part of a city'], 2: ['Shitamachi'], 'japanese': '下町'}
+  ...{1: ['to', 'in', 'at', 'by'], 'japanese': 'に'}
+  ...{1: ['go', 'move', 'head', 'be transported', 'reach'], 2: ['proceed', 'take place'], 3: ['pass through', 'come and go'], 4: ['walk'], 5: ['do'], 6: ['stream', 'flow'], 7: ['continue'], 8: ['have an orgasm', 'come', 'cum'], 9: ['trip', 'get high', 'have a drug-induced hallucination'], 'japanese': '行く'}
+  ...{1: ['.'], 'japanese': '。'}
+
 
 
 Edict Japanese Dictionary Search with Example sentences
