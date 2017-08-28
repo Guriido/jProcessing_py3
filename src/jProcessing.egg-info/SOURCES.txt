@@ -1,5 +1,5 @@
 MANIFEST.in
-README
+README.rst
 scripts
 setup.py
 scripts/vcabocha.py

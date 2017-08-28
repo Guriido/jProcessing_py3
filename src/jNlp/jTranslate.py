@@ -29,7 +29,7 @@ class Translator(object):
         """
         meanings = []  # words need to be seperated
         tree = BeautifulSoup(cabocha(sentence), features="xml")
-
+        print(cabocha(sentence))
         for chunk in tree.sentence.findAll("chunk"):
             for token in chunk.findAll("tok"):
                 feature = token.get("feature")
@@ -51,6 +51,19 @@ class Translator(object):
                     else:
                         query = features[6]
                         search = self.parser.search(query)
+                        # exceptional rule -> ある＝いる
+                        if query == 'いる':
+                            cpt = 1
+                            while cpt in search.keys():
+                                cpt += 1
+                            cpt_max = cpt
+                            search_bis = self.parser.search('ある')
+                            cpt = 1
+                            while cpt in search_bis.keys():
+                                search[cpt_max] = search_bis[cpt]
+                                cpt_max += 1
+                                cpt += 1
+
                         bypass_translation = len(search) == 0
                         # if query == '神保':
                         #     print(bypass_translation)
