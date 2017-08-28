@@ -51,18 +51,6 @@ class Translator(object):
                     else:
                         query = features[6]
                         search = self.parser.search(query)
-                        # exceptional rule -> ある＝いる
-                        if query == 'いる':
-                            cpt = 1
-                            while cpt in search.keys():
-                                cpt += 1
-                            cpt_max = cpt
-                            search_bis = self.parser.search('ある')
-                            cpt = 1
-                            while cpt in search_bis.keys():
-                                search[cpt_max] = search_bis[cpt]
-                                cpt_max += 1
-                                cpt += 1
 
                         bypass_translation = len(search) == 0
                         # if query == '神保':
@@ -70,6 +58,20 @@ class Translator(object):
                         if not bypass_translation:
                             entry = get_most_precise_entry(search, query)
                             translations = get_meanings(entry.glosses)
+                            #  exceptional rule -> ある＝いる
+                            if query == 'いる':
+                                cpt = 1
+                                while cpt in translations.keys():
+                                    cpt += 1
+                                cpt_max = cpt
+                                search_bis = self.parser.search('ある')
+                                entry_bis = get_most_precise_entry(search_bis, query)
+                                translations_bis = get_meanings(entry_bis.glosses)
+                                cpt = 1
+                                while cpt in translations_bis.keys():
+                                    translations[cpt_max] = translations_bis[cpt]
+                                    cpt_max += 1
+                                    cpt += 1
                             translations['japanese'] = query
                             if features[0] == '名詞':
                                 translations['pos_tag'] = 'NN'
