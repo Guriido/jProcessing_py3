@@ -29,7 +29,7 @@ class Translator(object):
         """
         meanings = []  # words need to be seperated
         tree = BeautifulSoup(cabocha(sentence), features="xml")
-        print(cabocha(sentence))
+        # print(cabocha(sentence))
         for chunk in tree.sentence.findAll("chunk"):
             for token in chunk.findAll("tok"):
                 feature = token.get("feature")
